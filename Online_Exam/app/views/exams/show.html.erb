@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row justify-content-center align-items-center bg-primary">
+      <div class="col-md-9">
+        <h2><%= @exam.subject %></h2>
+      </div>
+      <div class="col-md-3 text-right">
+        <h2>
+         
+          <%= button_to 'Destroy', @exam, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+        </h2>
+      </div>
+    </div>
+
+    <h4>Add Question</h4>
+
+    <%= form_with(model: [@question.exam, @question], html: { class: 'form-group' }) do |f| %>
+      <% if @question.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+          <ul>
+            <% @question.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+
+        <div class="form-group">
+          <%= f.label :question_type %>
+          <%= f.select :question_type, Question.question_types.keys.map { |type| [type.humanize, type] }, {}, { id: 'question_type', class: 'form-control' } %>
+        </div>
+
+<!-- Text Question Form Partial -->
+    <%= render 'text_question_form', f: f %>
+
+<!-- MCQs Question Form Partial -->
+<%= render 'mcq_question_form', f: f %>
+
+
+  </div>
+  <%end %>
+
+  <div class="card-footer bg-light">
+    <h1 class='question_head text-center'>Questions</h1>
+
+    <% @exam.questions.each do |question| %>
+      <% if question.persisted? %>
+        <div class='qs-item'>
+          <p><strong>Question </strong><%= question.content %></p>
+           <% if question.question_type=='mcq' %>
+              <p><strong>Options </strong><%= question.choices %></p>
+            <%end%>
+           <p><strong>Correct Option: </strong><%= question.correct_option %></p>
+             <p><strong>Score: </strong><%= question.score%></p>
+        </div>
+
+          <%= button_to 'Destroy', [question.exam, question], method: :delete, class: 'btn btn-danger', style: 'margin-left:20px', data: { confirm: 'Are you sure?' } %>
+        </div>
+
+        <hr>
+      <% end %>
+    <% end %>
+  </div>
+  <%= link_to 'Back', exams_path, class: 'btn btn-success' %>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function () {
+  // Use event delegation to handle change event
+  $(document).on('change', '#question_type', function () {
+    if ($(this).val() === 'text') {
+      $('#text_question_form').show();
+      $('#mcqs_question_form').hide();
+    } else if ($(this).val() === 'mcq') {
+      $('#text_question_form').hide();
+      $('#mcqs_question_form').show();
+    } else {
+      console.log("Kuch ni bhae chlrha")
+      $('#text_question_form').hide();
+      $('#mcqs_question_form').hide();
+    }
+  });
+});
+
+</script>

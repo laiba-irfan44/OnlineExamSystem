@@ -1,0 +1,39 @@
+<%= form_with(model: exam, local: true) do |form| %>
+<% if exam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this Exam from being saved:</h2>
+
+      <ul>
+      <% exam.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, class: 'form-control' %>
+    <% if @exam.errors[:subject].any? %>
+      <div class="error">
+        <%= @exam.errors[:subject].join(', ') %>
+      </div>
+    <% end %>
+  </div>
+
+
+ <div class="form-group">
+  <%= form.label :start_time %>
+  <%= form.datetime_field :start_time %>
+  </div>
+
+   <div class="form-group">
+  <%= form.label :end_time %>
+  <%= form.datetime_field :end_time %>
+    </div>
+  
+  <div class="actions ">
+    <%= form.submit class:'btn btn-primary' , style: 'margin-top: 20px;' %>
+  </div>
+
+<% end %>

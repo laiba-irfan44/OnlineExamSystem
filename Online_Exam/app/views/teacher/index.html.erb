@@ -1,0 +1,40 @@
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Teacher Portal</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <% if current_user %>
+      <li>
+        <%= image_tag current_user.image, style:'height:50px; border-radius:50px;' %>
+      </li>
+      <li>
+        <%= link_to current_user.full_name, edit_user_registration_path, class: 'text-primary' %>
+      </li>
+      <% end %>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <a class="btn btn-primary " href="<%= exams_path %>">Create Exam</a>
+    <% if @exam %>
+     <%= link_to 'Review Exam Scores', review_scores_teachers_path, class: 'btn btn-primary' %>
+     <%= link_to 'Review Exam of Students', review_exam_teachers_path, class: 'btn btn-primary' %>
+    <% else %>
+       <p>No exam found.</p>
+    <% end %> 
+    <%= yield %>
+     
+  </div>
+
+</body>
+</html>

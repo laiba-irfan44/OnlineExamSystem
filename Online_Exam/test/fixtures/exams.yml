@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: MyString
+  start_time: 2023-08-16 09:33:31
+  end_time: 2023-08-16 09:33:31
+  status: 1
+  teacher: one
+
+two:
+  subject: MyString
+  start_time: 2023-08-16 09:33:31
+  end_time: 2023-08-16 09:33:31
+  status: 1
+  teacher: two

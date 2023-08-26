@@ -1,0 +1,38 @@
+<h1 class="text-center bg-success">Review Exam of Students</h1>
+
+<% @students.each do |student| %>
+  <h2 class="text-center bg-primary"><%= student.full_name %></h2>
+
+  <% @exam_results.where(user: student).group_by { |result| result.exam }.each do |exam, results| %>
+    <h3>Exam: <%= exam.subject %></h3>
+    <p>Total Score: <%= results.first.total_score %></p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Correct Option</th>
+          <th>User Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.each do |result| %>
+          <% result.exam.questions.each do |question| %>
+            <tr>
+              <td><%= question.content %></td>
+              <td><%= question.correct_option %></td>
+              <td>
+               <% if result.text_ans.present? %>
+               <% answer_hash = eval(result.text_ans) rescue nil %>
+               <%= answer_hash[question.id] %>
+               <% else %>
+              No answer provided
+              <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

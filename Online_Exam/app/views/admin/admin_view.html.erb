@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h1 class="text-center">List of Exams Created by Teachers</h1>
+    <% if @exams_to_approve.any? %>
+  <ul class="list-group mt-4">
+    <% @exams_to_approve.each do |exam| %>
+      <li class="list-group-item">
+        <strong>Subject:</strong>
+        <%= link_to exam.subject, admin_question_view_admin_index_path(exam) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="mt-4">No exams approve request by teachers are available.</p>
+<% end %>
+    </div>
+  </div>
+
+  

@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+     <div class="row justify-content-center  align-items-center bg-primary">
+        <div class ="col-md-9">
+        <h2 class='header text-center'>Editing Exam</h2>
+        </div>
+        
+      </div>
+
+<%= render 'form', exam: @exam %>
+ <%= button_to 'Destroy', @exam, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+
+<%= link_to 'Back', exams_path , class:'btn btn-success',style:'margin-top:20px;' %>
+</div>

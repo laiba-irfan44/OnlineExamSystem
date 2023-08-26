@@ -1,0 +1,35 @@
+<div class="card-footer bg-light">
+  <h1 class='question_head text-center'>Questions</h1>
+  <hr><hr>
+  <div id="timer" class="text-center">Timer: <span id="timer-countdown"></span></div>
+  <%= form_with(model: @exam, url: submit_student_exam_path(@exam), method: :post, html: { class: 'form-group' }) do |f| %>
+    <div id="question-container">
+      <h3 class=text-center> Total Questions <%= @exam.questions.count %> </h3>
+      <hr>
+      <% @exam.questions.each_with_index do |question, index| %>
+        <% if question.persisted? %>
+          <div class='qs-item' id="question-<%= index %>" <%= "style='display: none;'" unless index == 0 %>>
+            <p><strong>Description: </strong><%= question.content %></p>
+            <% if question.question_type == 'mcq' %>
+              <ul>
+                <% question.choices.each_with_index do |choice, choice_index| %>
+                  <li><strong>Option <%= (choice_index + 1).chr %>:</strong> <%= choice %></li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <div class="form-group">
+             
+              <%= f.text_field("questions[#{question.id}][text_ans]", class: 'form-control', placeholder: 'Enter your answer here', data: { question_index: index }) %>
+            </div>
+            <button id="next-button" class="btn btn-primary">Next Question</button>
+            <hr>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Submit Answers', class: 'btn btn-primary', id: 'submit-answers-button' %>
+    </div>
+  <% end %>
+</div>

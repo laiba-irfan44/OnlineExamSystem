@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="text-center mb-4">Exams for Approval</h1>
+  <ul class="list-group">
+    <% if @exams_to_approve.any? %>
+    <% @exams_to_approve.each do |exam| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span><%= exam.subject %></span>
+        <%= link_to 'Approve', approve_exam_path(exam), method: :post, class: 'btn btn-success btn-sm' %>
+      </li>
+      <% end %>
+      <% else %>
+        <h3> No Pending Exams for Approval </h3>
+        <% end %>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<div class="row mt-5">
+    <div class="col-md-12">
+      <h1 class="text-center">Exams for Approval</h1>
+      <ul class="list-group mt-4">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span><%= @exam.subject %></span>
+              <%= button_to 'Approve', approve_exam_admin_index_path(@exam), class: 'btn btn-success btn-sm' %>
+              <%= button_to 'Cancel Exam', admin_cancel_exam_admin_index_path(@exam), method: :put, data: { confirm: 'Are you sure you want to cancel this exam?' }, class: 'btn btn-danger btn-sm' %>
+          </li>
+
+            <!-- Exam Questions -->
+          <div class="card-footer bg-light">
+            <h1 class="question_head text-center">Questions</h1>
+              <% @exam.questions.each do |question| %>
+                <% if question.persisted? %>
+                  <div class="qs-item">
+                    <p><strong>Question:</strong> <%= question.content %></p>
+                    <% if question.question_type=='mcq' %>
+                    <p><strong>Options </strong><%= question.choices %></p>
+                    <%end%>
+                    <p><strong>Correct Option:</strong> <%= question.correct_option %></p>
+                     <p><strong>Score:</strong> <%= question.score %></p>
+                  <hr>
+                <% end %>
+              <% end %>
+          </div>
+      </ul>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+/* app/assets/stylesheets/custom.css */
+
+.custom-card-body {
+  background-color: #f0f0f0; 
+}
+
+.project-card {
+  transition: background-color 0.3s ease;
+}
+
+.project-card:hover {
+  background-color: aliceblue;
+}
+
+body {
+      background-color: #f8f9fa; /* Light gray background color */
+}
+    .navbar {
+      background-color: #343a40; /* Dark gray navbar background color */
+      border: none;
+    }
+    .navbar-brand {
+      color: #ffffff; /* White text color for navbar brand */
+      font-weight: bold;
+    }
+    .navbar-nav li a {
+      color: #ffffff; /* White text color for navbar links */
+    }
+    .container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ffffff; /* White background for content container */
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
+    .invite-button {
+      margin-top: 10px;
+    }
+
+    .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    margin-top: 100px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }

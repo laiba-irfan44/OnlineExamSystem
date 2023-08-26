@@ -1,0 +1,22 @@
+<!-- app/views/exams/student_view.html.erb -->
+
+<div class="container">
+  <h1>Exams Available for Students</h1>
+  <% if @exams %>
+    <ul>
+      <% @exams.each do |exam| %>
+        <li>
+          <strong>Subject:</strong> <%= exam.subject %><br>
+          <% if current_user.has_taken_exam?(exam) %>
+          <p>You have already taken this exam. You cannot retake it.</p>
+           <% else %>
+        <%= link_to 'Take Exam', student_view_exam_questions_students_path(subject: exam.subject), class: 'btn btn-success' %>
+         <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No exams are currently available for students.</p>
+  <% end %>
+   <h2> <%= link_to 'Back', student_index_path_path, class: 'btn btn-success' %></h2>
+</div>

@@ -1,0 +1,24 @@
+<h1 class='text-center bg-primary'>Review Exam Scores</h1>
+
+<% if @results.any? %>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Exam</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |result| %>
+        <tr>
+          <td><%= result.user.full_name %></td>
+          <td><%= result.exam.subject %></td>
+          <td><%= result.total_score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No exam scores available.</p>
+<% end %>

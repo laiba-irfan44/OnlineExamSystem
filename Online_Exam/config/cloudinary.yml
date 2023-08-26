@@ -1,0 +1,13 @@
+development:
+  cloud_name: dgeu5zb4g
+  api_key: 369223396416266
+  api_secret: Y0vYWHpLkH_qeq
+  secure: true
+  enhancer: 'advanced'
+
+production:
+  cloud_name: dgeu5zb4g
+  api_key: 369223396416266
+  api_secret: Y0vYWHpLkH_qeq
+  secure: true
+  enhancer: 'advanced'

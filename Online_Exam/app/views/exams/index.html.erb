@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-body">
+     <div class="row justify-content-center  align-items-center bg-primary">
+        <div class ="col-md-9">
+        <h2>Exams</h2>
+        </div>
+        <div class="col-md-3 text-right ">
+           <h2> <%= link_to 'New Exam', new_exam_path, class: 'btn btn-success' %></h2>
+        </div>
+      </div>
+  
+ 
+     <% @exams.each do |exam| %>
+       <%= link_to exam do %>
+        <div class="card project-card">
+          <div class="card-body">
+          
+            <h4 class="card-title"><%= exam.subject %></h4>
+           <% if current_user.request_sent? %>
+               <% if exam.status !='approve' && exam.status =='sent' %>
+               <button> Pending Request </button>
+               <%end%>
+                <% if exam.status=='approve' %>
+                <button>Approved </button>
+                <%end%>
+
+               <% if exam.status !='approve' && exam.status !='sent' %>
+               <%= link_to 'Request for Approval',approval_request_teacher_path(exam),class: 'btn btn-success' %>
+               <% end %>
+          
+             <% else %>
+               <% if exam.status !='approve' && exam.status =='sent' %>
+               <button> Pending Request </button>
+               <%end%>
+                <% if exam.status=='approve' %>
+                <button>Approved </button>
+                <%end%>
+
+                <% end %>
+
+
+          </div>
+          <hr>
+        </div>
+        <% end %>
+     <% end %>
+
+  </div>
+ <h2> <%= link_to 'Back', teacher_index_path_path, class: 'btn btn-success' %></h2>
+</div>
+
+

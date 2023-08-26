@@ -1,0 +1,30 @@
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Admin Portal</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <% if current_user %>
+        <li><%= link_to "Hi, #{current_user.email}", edit_user_registration_path %></li>
+        <% end %>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+       
+        
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+
+    <a class="btn btn-primary invite-button" href="<%= send_user_invitation_path(role:'teacher') %>">Invite Teacher</a>
+     <a class="btn btn-primary invite-button" href="<%= send_user_invitation_path(role:'student') %>">  Invite Student</a>
+     <a class="btn btn-primary invite-button" href="<%= admin_view_admin_index_path %>"> All Exams </a>
+     <a class="btn btn-primary invite-button" href="<%= review_scores_admin_index_path %>"> Review Exam Scores </a>
+    <%= yield %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<% if current_user.admin? %>
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name)) do |f| %>
+  <%= f.email_field :email, placeholder: 'Email address' %>
+  <%= f.select :user_type, User.user_types.keys %>
+  <%= f.submit 'Send Invitation' %>
+<% end %>
+<% else %>
+  <p>Only admins can send invitations to teachers.</p>
+<% end %>
