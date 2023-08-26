@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this project, simply login with Email :  "admin123@gmail.com"
 
-Things you may want to cover:
+------------------------------------------ Admin -------------------------------------
 
-* Ruby version
+It will redirect to admin portal from where you can send invitations to teachers and students 
+Also, admin can see Exam scores of student.
 
-* System dependencies
+------------------------------------------ Teacher -------------------------------------
 
-* Configuration
+When teacher accepts invite then he can set credential and logged into teacher portal
+Teacher can create exam send request for approval, only one request at a time
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+------------------------------------------ Student -------------------------------------
+Student can give approved exam in any order, can't retake exam and then able to see scores
