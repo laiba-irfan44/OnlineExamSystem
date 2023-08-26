@@ -18,7 +18,6 @@ class ExamsController < ApplicationController
 
     respond_to do |format|
       if @exam.save
-        current_user.update(pending_exam_id: @exam.id)
         format.html { redirect_to exam_url(@exam), notice: "Exam was successfully created." }
         format.json { render :show, status: :created, location: @exam }
       else
