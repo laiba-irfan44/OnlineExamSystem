@@ -39,7 +39,7 @@ def submit_student_exam
 
   @result = Result.create(user: current_user, exam: @exam, total_score: total, text_ans: student_answers)
 
-  redirect_to student_view_path
+  redirect_to student_view_students_path
 end
 
 def student_exams

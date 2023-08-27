@@ -63,7 +63,6 @@ end
  devise_scope :user do
   root 'devise/sessions#new'
   get 'devise/invitations/new', to: 'devise/invitations#new', as: :send_user_invitation
-  # get 'devise/invitations/accept', to: 'devise/invitations#edit', as: :send_user_invitation
   get 'users/sign_out' ,to: 'devise/sessions#destroy'
 end
 
@@ -71,7 +70,7 @@ end
 resources :results
 
  
-  get '/admin', to: 'admin#index', as: :admin_index_path
-  get '/teacher', to: 'teacher#index', as: :teacher_index_path
-  get '/student', to: 'student#index', as: :student_index_path
+get '/admin', to: 'admin#index', as: :admin_index_path
+get '/teacher', to: 'teacher#index', as: :teacher_index_path
+get '/student', to: 'student#index', as: :student_index_path
 end

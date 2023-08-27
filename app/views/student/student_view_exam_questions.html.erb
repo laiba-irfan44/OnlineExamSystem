@@ -2,7 +2,7 @@
   <h1 class='question_head text-center'>Questions</h1>
   <hr><hr>
   <div id="timer" class="text-center">Timer: <span id="timer-countdown"></span></div>
-  <%= form_with(model: @exam, url: submit_student_exam_path(@exam), method: :post, html: { class: 'form-group' }) do |f| %>
+  <%= form_with(model: @exam, url: submit_student_exam_student_path(@exam), method: :post, html: { class: 'form-group' }) do |f| %>
     <div id="question-container">
       <h3 class=text-center> Total Questions <%= @exam.questions.count %> </h3>
       <hr>

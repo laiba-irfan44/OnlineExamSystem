@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Your JavaScript code here
   $(document).on('change', '#question_type', function () {
     if ($(this).val() === 'text') {
       $('#text_question_form').show();

@@ -34,11 +34,11 @@ class ExamPolicy < ApplicationPolicy
     update?
   end
   def cancel?
-    user.admin? && record.upcoming? # Admin can cancel only upcoming exams
+    user.admin
   end
 
   def review_scores?
-    user.teacher? && record.status == "completed"
+    user.teacher
   end
 
    def schedule_dates?
