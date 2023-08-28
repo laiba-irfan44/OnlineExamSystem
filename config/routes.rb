@@ -6,16 +6,11 @@ Rails.application.routes.draw do
 
 
 # --------------------------------- STUDENT ----------------------------------
-resources :students, only: [] do
-  collection do
-    get 'student_view',to:'student#student_view'
-    get 'student_view_exam_questions', to: 'student#student_view_exam_questions'
-    get 'student_exams', to: 'student#student_exams'
-  end
-  member do
-    post 'submit_student_exam/:id', to: 'student#submit_student_exam', as: 'submit_student_exam'
-  end
-end
+  get 'student_view', to: 'student#student_view'
+  get 'student_view_exam_questions', to: 'student#student_view_exam_questions'
+  get 'student_exams', to: 'student#student_exams'
+  post 'student/submit_student_exam/:id', to: 'student#submit_student_exam', as: 'submit_student_exam'
+
 
 #----------------------------------- EXAMS Questions----------------------------------------
   resources :exams do
@@ -53,7 +48,7 @@ resources :admin, only: [] do
   collection do
     get 'admin_view', to: 'admin#admin_view'
     get 'review_scores', to: 'admin#review_scores'
-    get 'question_view/:id', to: 'admin#admin_question_view', as: :admin_question_view
+    get 'admin_question/:id', to: 'admin#admin_question', as: :admin_question
     post 'approve/:id', to: 'admin#approve', as: :approve_exam
     put 'cancel/:id', to: 'admin#cancel', as: :admin_cancel_exam
   end

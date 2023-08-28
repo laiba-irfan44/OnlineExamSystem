@@ -10,7 +10,7 @@
           <% if current_user.has_taken_exam?(exam) %>
           <p>You have already taken this exam. You cannot retake it.</p>
            <% else %>
-        <%= link_to 'Take Exam', student_view_exam_questions_students_path(subject: exam.subject), class: 'btn btn-success' %>
+        <%= link_to 'Take Exam', student_view_exam_questions_path(subject: exam.subject), class: 'btn btn-success' %>
          <% end %>
         </li>
       <% end %>

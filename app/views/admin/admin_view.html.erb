@@ -7,7 +7,7 @@
     <% @exams_to_approve.each do |exam| %>
       <li class="list-group-item">
         <strong>Subject:</strong>
-        <%= link_to exam.subject, admin_question_view_admin_index_path(exam) %>
+        <%= link_to exam.subject, admin_question_admin_index_path(exam) %>
       </li>
     <% end %>
   </ul>
