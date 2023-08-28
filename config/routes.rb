@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'student_exams', to: 'student#student_exams'
   post 'student/submit_student_exam/:id', to: 'student#submit_student_exam', as: 'submit_student_exam'
 
-
 #----------------------------------- EXAMS Questions----------------------------------------
   resources :exams do
     resources :questions
