@@ -9,27 +9,13 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = @exam.questions
-<<<<<<< Updated upstream
   end
 
-  def show
-=======
-    # if params[:question][:question_type] == 'mcq'
-    # @question.options = params[:question][:options_input].split(',').map(&:strip)
-  end
-
-  def show; end
-
-  def new
-    @question = @exam.questions.build
->>>>>>> Stashed changes
-  end
 
   def edit
     @question = Question.find(params[:id])
   end
 
-<<<<<<< Updated upstream
  def create
   @question = @exam.questions.build(question_params)
    if @question.question_type == 'text'
@@ -63,7 +49,8 @@ class QuestionsController < ApplicationController
     redirect_to(@question.exam)
   else
     render action: 'edit'
-=======
+  end
+
   def create
     @question = @exam.questions.build(question_params)
 
@@ -101,7 +88,6 @@ class QuestionsController < ApplicationController
     else
       render action: 'edit'
     end
->>>>>>> Stashed changes
   end
  end
 

@@ -2,25 +2,17 @@
 
 # Teacher controller
 class TeacherController < ApplicationController
-<<<<<<< Updated upstream
  before_action :authenticate_user!
  before_action :check_teacher_role
-=======
-  before_action :authenticate_user!
-  before_action :check_teacher_role
->>>>>>> Stashed changes
 
 
   def index
     @exam = Exam.order(created_at: :desc).first
   end
-<<<<<<< Updated upstream
   
 def review_scores
   @results = Result.with_associations.all
 end
-=======
->>>>>>> Stashed changes
 
   def review_scores
     @results = Result.with_associations.all
