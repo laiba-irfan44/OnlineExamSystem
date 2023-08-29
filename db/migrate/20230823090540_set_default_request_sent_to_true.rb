@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SetDefaultRequestSentToTrue < ActiveRecord::Migration[7.0]
   def change
-     change_column_default :exams, :request_sent, true
+    change_column_default :exams, :request_sent, true
   end
 end

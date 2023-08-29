@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Exams Controller
 class ExamsController < ApplicationController
   before_action :set_exam, only: %i[show edit update destroy]
-  
+
   def index
     @exams = policy_scope(Exam)
   end
@@ -18,28 +21,26 @@ class ExamsController < ApplicationController
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to exam_url(@exam), notice: "Exam was successfully created." }
+        format.html { redirect_to exam_url(@exam), notice: 'Exam was successfully created.' }
         format.json { render :show, status: :created, location: @exam }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @exam.errors, status: :unprocessable_entity }
       end
     end
-   
   end
 
-# when adding question --- makes ques object
+  # when adding question --- makes ques object
   def show
     @question = @exam.questions.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @exam.update(exam_params)
-        format.html { redirect_to exam_url(@exam), notice: "Exam was successfully updated." }
+        format.html { redirect_to exam_url(@exam), notice: 'Exam was successfully updated.' }
         format.json { render :show, status: :ok, location: @exam }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,21 +54,20 @@ class ExamsController < ApplicationController
     redirect_to exams_url, notice: 'Exam was successfully destroyed.'
   end
 
-#----------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
 
-private
+  private
 
-def set_exam
-  if current_user.admin?
-    @exam = Exam.find(params[:id])
-  else
-    @exam = current_user.exams.find(params[:id])
-  end
+  def set_exam
+    @exam = if current_user.admin?
+              Exam.find(params[:id])
+            else
+              current_user.exams.find(params[:id])
+            end
     authorize @exam
   end
 
-def exam_params
-  params.require(:exam).permit(:subject, :start_time, :end_time, :status, :teacher_id)
-end
-
+  def exam_params
+    params.require(:exam).permit(:subject, :start_time, :end_time, :status, :teacher_id)
+  end
 end

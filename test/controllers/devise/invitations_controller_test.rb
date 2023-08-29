@@ -1,7 +1,11 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class Devise::InvitationsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
-end
+require 'test_helper'
+
+
+  class InvitationsControllerTest < ActionDispatch::IntegrationTest
+    # test "the truth" do
+    #   assert true
+    # end
+  end
+

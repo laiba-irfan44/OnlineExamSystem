@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class ExamPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.admin?
         scope.all
-      else user.teacher?
+      else
+        user.teacher?
         scope.where(teacher_id: user.id)
       end
-  
-   end
+    end
   end
 
- def show?
+  def show?
     user.admin? || user.teacher? || user.exams.include?(record)
   end
 
@@ -33,6 +35,7 @@ class ExamPolicy < ApplicationPolicy
   def destroy?
     update?
   end
+
   def cancel?
     user.admin
   end
@@ -41,13 +44,11 @@ class ExamPolicy < ApplicationPolicy
     user.teacher
   end
 
-   def schedule_dates?
+  def schedule_dates?
     user.teacher?
   end
 
   def admin_view?
-  user.admin?
+    user.admin?
+  end
 end
-
-end
-
