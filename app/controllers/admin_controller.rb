@@ -12,7 +12,6 @@ class AdminController < ApplicationController
  def admin_question
   @exam = Exam.find(params[:id])
   @questions = @exam.questions
-  @exams_to_approve = Exam.where(approved: false, status:2)
  end
  
  def approve
