@@ -7,18 +7,14 @@ def index
    @exam = Exam.order(created_at: :desc).first
   end
 def review_scores
-  @results = Result.all.includes(:exam, :user)
+  @results = Result.with_associations.all
 end
 
 
 def review_exam
   # Retrieve the list of students
   @students = User.where(role: 'student')
-
-  # Retrieve the exams taken by each student
   @exam_results = Result.where(user: @students).includes(:exam)
-
-  # Render the view to display this information
 end
 
  def approval_request

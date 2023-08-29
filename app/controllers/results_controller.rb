@@ -5,7 +5,7 @@ class ResultsController < ApplicationController
 
   def index
      @results = Result.all
-    render 'index'
+     render 'index'
   end
 
   def create
@@ -21,14 +21,10 @@ class ResultsController < ApplicationController
 
   def show
     @result = Result.find(params[:id])
-    # Ensure that the user accessing the result is authorized to do so
     authorize_result_access(@result)
-
-    # Render the result details view
   end
 
-  # Add other actions as needed (e.g., update, destroy)
-    def result_params
+  def result_params
     params.require(:result).permit(:total_score, :text_ans)
   end
 end

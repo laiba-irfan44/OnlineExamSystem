@@ -25,8 +25,8 @@
   <div class="container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= link_to 'Show All Exams', student_view_students_path(@exams), class: 'btn btn-primary' %>
-    <%= link_to 'View My Exams', student_exams_students_path, class: 'btn btn-primary' %>
+    <%= link_to 'Show All Exams', student_view_path(@exams), class: 'btn btn-primary' %>
+    <%= link_to 'View My Exams', student_exams_path, class: 'btn btn-primary' %>
 
     <%= yield %>
   </div>
