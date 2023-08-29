@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
+# Exam model
+
 class Exam < ApplicationRecord
-  enum status: { cancel:0 , approve:1 , sent:2 , submitted:3}
+  enum status: { cancel: 0, approve: 1, sent: 2, submitted: 3 }
 
   belongs_to :teacher, class_name: 'User', foreign_key: 'teacher_id'
   belongs_to :user
@@ -12,6 +16,7 @@ class Exam < ApplicationRecord
   validates :subject, presence: true
 
   def teacher_can_have_one_pending_exam
+<<<<<<< Updated upstream
     if self.status == 'pending' && self.teacher.pending_exam.present?
       errors.add(:base, 'You already have a pending exam for approval.')
     end
@@ -19,4 +24,10 @@ class Exam < ApplicationRecord
 
   scope :to_approve, -> { where(approved: false, status: 2) }
   
+=======
+    return unless status == 'pending' && teacher.pending_exam.present?
+
+    errors.add(:base, 'You already have a pending exam for approval.')
+  end
+>>>>>>> Stashed changes
 end

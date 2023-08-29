@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # controllers/results_controller.rb
 class ResultsController < ApplicationController
   before_action :authenticate_user! # Adjust this based on your authentication system
 
 
   def index
-     @results = Result.all
-     render 'index'
+    @results = Result.all
+    render 'index'
   end
 
   def create
