@@ -1,11 +1,12 @@
 class TeacherController < ApplicationController
  before_action :authenticate_user!
-  before_action :check_teacher_role
+ before_action :check_teacher_role
 
 
 def index
    @exam = Exam.order(created_at: :desc).first
   end
+  
 def review_scores
   @results = Result.with_associations.all
 end

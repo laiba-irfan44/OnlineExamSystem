@@ -5,21 +5,19 @@ class AdminController < ApplicationController
   end
 
   def admin_view
-   @exams = Exam.where(teacher_id: User.teacher.pluck(:id))
-   @exams_to_approve = Exam.where(approved: false, status:2)
+   # @exams = Exam.where(teacher_id: User.teacher.pluck(:id))
+   @exams_to_approve = Exam.to_approve
   end
 
  def admin_question
   @exam = Exam.find(params[:id])
   @questions = @exam.questions
-  @exams_to_approve = Exam.where(approved: false, status:2)
  end
  
  def approve
   @exam = Exam.find(params[:id])
-  @exams_to_approve = Exam.where(approved: false)
+  @exams_to_approve =  Exam.to_approve
   @exam.update(approved: true, status:1)
-  # @exam.update(status: 1)
   teacher = User.find(@exam.teacher_id) # Find the teacher who created the request
   teacher.update(request_sent: true)
   if params[:user] && params[:user][:request_sent]
@@ -45,4 +43,3 @@ class AdminController < ApplicationController
  end
 
 end
-

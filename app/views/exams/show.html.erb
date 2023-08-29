@@ -35,7 +35,7 @@
 
       <!-- MCQs Question Form Partial -->
       <%= render 'mcq_question_form', f: f %>
-    </div> <!-- This was missing in your original code -->
+    <% end%>
   </div>
 
   <div class="card-footer bg-light">
@@ -52,8 +52,9 @@
           <p><strong>Score: </strong><%= question.score %></p>
         </div>
 
+
         <%= button_to 'Destroy', [question.exam, question], method: :delete, class: 'btn btn-danger', style: 'margin-left:20px', data: { confirm: 'Are you sure?' } %>
-      </div> <!-- This was misplaced in your original code -->
+      <% end %>
       <hr>
     <% end %>
   </div>

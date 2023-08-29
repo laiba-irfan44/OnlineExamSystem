@@ -11,10 +11,12 @@ class Exam < ApplicationRecord
   has_many :users, through: :results
   validates :subject, presence: true
 
-   def teacher_can_have_one_pending_exam
+  def teacher_can_have_one_pending_exam
     if self.status == 'pending' && self.teacher.pending_exam.present?
       errors.add(:base, 'You already have a pending exam for approval.')
     end
   end
+
+  scope :to_approve, -> { where(approved: false, status: 2) }
   
 end

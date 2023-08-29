@@ -14,8 +14,6 @@ class ResultsController < ApplicationController
 
     if @result.save
       redirect_to exam_path(@exam), notice: 'Result recorded successfully.'
-    else
-      # Handle validation errors if needed
     end
   end
 

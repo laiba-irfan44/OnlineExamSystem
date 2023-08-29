@@ -6,17 +6,9 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = @exam.questions
-    # if params[:question][:question_type] == 'mcq'
-    # @question.options = params[:question][:options_input].split(',').map(&:strip)
-
   end
 
   def show
-
-  end
-
-  def new
-    @question = @exam.questions.build
   end
 
   def edit
@@ -25,26 +17,22 @@ class QuestionsController < ApplicationController
 
  def create
   @question = @exam.questions.build(question_params)
-
-    if @question.question_type == 'text'
-   
-    @question.content = params[:question][:content_text]
-    @question.score = params[:question][:score_text]
+   if @question.question_type == 'text'
+      @question.content = params[:question][:content_text]
+      @question.score = params[:question][:score_text]
       @question.correct_option = params[:question][:correct_option_text]
-  end
+   end
 
   if @question.question_type == 'mcq'
-    @question.content = params[:question][:content_mcqs]
-    @question.correct_option = params[:question][:correct_option_mcqs]
+     @question.content = params[:question][:content_mcqs]
+     @question.correct_option = params[:question][:correct_option_mcqs]
      @question.score = params[:question][:score_mcqs]
-    # Assign values from individual fields to the 'choices' array
-    @question.choices = [
+     @question.choices = [
       params[:question][:choices_0],
       params[:question][:choices_1],
       params[:question][:choices_2],
       params[:question][:choices_3]
     ]
-
   end
 
   if @question.save
@@ -52,22 +40,21 @@ class QuestionsController < ApplicationController
   else
     render action: 'new'
   end
-end
+ end
 
 
-  def update
-    if @question.update_attributes(question_params)
-      redirect_to(@question.exam)
-    else
-      render action: 'edit'
-    end
+ def update
+  if @question.update_attributes(question_params)
+    redirect_to(@question.exam)
+  else
+    render action: 'edit'
   end
+ end
 
-  def destroy
-    @question.destroy
-
-    redirect_to @exam
-  end
+ def destroy
+  @question.destroy
+  redirect_to @exam
+ end
 
   private
    

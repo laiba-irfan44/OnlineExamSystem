@@ -5,6 +5,7 @@ class StudentController < ApplicationController
 def student_view
     @exams = Exam.where(status: 1, approved: true) #only approved 
 end
+
 def student_view_exam_questions
   subject = params[:subject]
   @exam = Exam.find_by(subject: subject)
@@ -15,6 +16,7 @@ def student_view_exam_questions
     redirect_to student_view_exams_path # Redirect to the previous page or another appropriate location
   end
 end
+
 def submit_student_exam
   @exam = Exam.find(params[:id])
   total = 0
@@ -51,7 +53,7 @@ end
 private
 
 def set_student
-    @student = current_user # Assuming you have a current_user method
+    @student = current_user
   end
 
 end
